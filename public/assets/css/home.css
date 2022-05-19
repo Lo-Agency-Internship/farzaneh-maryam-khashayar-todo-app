@@ -16,3 +16,24 @@ body{
     border-radius: 10px;
     border: 1px solid rgba(255,255,255,0.2);
 }
+
+#emailAlert{
+    display: none;
+    color: red;
+    font-size: 12px;
+}
+#passAlert{
+    display: none;
+    color: red;
+    font-size: 12px;
+}
+
+#formAlert{
+    display: none;
+    color: red;
+    font-size: 12px;
+}
+
+.required{
+    color: red;
+}
