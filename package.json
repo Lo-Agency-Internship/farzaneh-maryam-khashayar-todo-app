@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "name": "app.js",
+  "description": "TodoApp server",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "deploy": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lo-Agency-Internship/farzaneh-maryam-khashayar-todo-app.git"
+  },
+  "author": "Khashayar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lo-Agency-Internship/farzaneh-maryam-khashayar-todo-app/issues"
+  },
+  "homepage": "https://github.com/Lo-Agency-Internship/farzaneh-maryam-khashayar-todo-app#readme"
+}
