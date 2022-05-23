@@ -9,7 +9,7 @@ const db = [
     tasks: [
       {
         id: 1,
-        title: "raeding express.js",
+        title: "reading express.js",
         finished: false,
         dueDate: "19-05-2022",
       },
@@ -94,3 +94,32 @@ function signUp() {
 }
 
 /*----------------------------------------------------------------signup end-------------------------------------------------*/
+
+/*----------------------------------------------------------------filter start-------------------------------------------------*/
+const radioButtons = document.querySelectorAll('input[name="btnradio"]');
+const selectedTasks = [];
+radioButtons.forEach((btn) => {
+  if (btn.checked.value === "all") {
+    const personId = localStorage.getItem(id);
+    const tasks = db[personId - 1].tasks;
+    selectedTasks = [...tasks];
+  }
+  if (btn.checked.value === "weekly") {
+    const personId = localStorage.getItem(id);
+    const tasks = db[personId - 1].tasks;
+    const day = new Date().getDate();
+    selectedTasks = tasks.filter((task) => {
+      return task.finished === false && task.dueDate.day - day <= 7;
+    });
+  }
+  if (btn.checked.value === "monthly") {
+    const personId = localStorage.getItem(id);
+    const tasks = db[personId - 1].tasks;
+    const month = new Date().getMonth() + 1;
+    selectedTasks = tasks.filter((task) => {
+      return task.finished === false && task.dueDate.month === month;
+    });
+  }
+});
+
+/*----------------------------------------------------------------filter end-------------------------------------------------*/
