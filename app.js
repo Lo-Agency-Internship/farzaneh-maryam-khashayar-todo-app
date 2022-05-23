@@ -25,3 +25,7 @@ const userTask= req.body;
 
 })
 
+app.post("/",function(req,res){
+console.log(req.body);
+})
+

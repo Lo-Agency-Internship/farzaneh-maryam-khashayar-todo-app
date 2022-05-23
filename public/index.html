@@ -68,10 +68,11 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form>
+            <form method="POST" action="">
               <div class="mb-3">
                 <label for="loginInputEmail" class="form-label">Username</label>
-                <input
+                <input 
+                  name="user"
                   type="email"
                   placeholder="email@example.com"
                   class="form-control"
@@ -84,13 +85,13 @@
                   >Password</label
                 >
                 <input
+                  name="pass"
                   type="password"
                   placeholder="**********"
                   class="form-control"
                   id="loginInputPassword"
                 />
               </div>
-            </form>
           </div>
           <div class="modal-footer">
             <button
@@ -100,8 +101,9 @@
             >
               Close
             </button>
-            <button type="button" class="btn btn-primary">Login</button>
+            <button type="submit" onclick="validate()" class="btn btn-primary"> Login </button>
           </div>
+          </form>
         </div>
       </div>
     </div>
