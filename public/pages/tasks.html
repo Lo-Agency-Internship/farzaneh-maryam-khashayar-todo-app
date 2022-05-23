@@ -105,7 +105,6 @@
         </div>
 
         <button
-          type="button"
           class="btn btn-info"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
@@ -133,52 +132,37 @@
               ></button>
             </div>
             <div class="modal-body">
-              <form class="form-floating">
+              <form method="POST" action="" class="form-floating" name="taskform">
                 <input
-                  type="task"
+                 name="title"
+                  type="text"
                   class="form-control"
                   id="floatingInputValue"
+                  required
                 />
                 <label for="floatingInputValue">Add your Task Title</label>
-              </form>
               <div class="row g-2">
                 <div class="col-md">
                   <div class="form-floating">
-                    <input
-                      type="task"
-                      class="form-control"
-                      id="floatingInputGrid"
-                    />
-                    <label for="floatingInputGrid">Description</label>
-                  </div>
-                </div>
-                <div class="col-md">
-                  <div class="form-floating">
-                    <select
-                      class="form-select"
-                      id="floatingSelectGrid"
-                      aria-label="Floating label select example"
-                    >
-                      <option selected>Due Date</option>
-                      <option value="calendar">calendar</option>
-                    </select>
-                    <label for="floatingSelectGrid">Works with selects</label>
+                    
+                        <input
+                  name="due-date"
+                  type="date"
+                  class="form-control"
+                  id="floatingInputValue"
+                  required
+                />
+                <label for="floatingSelectGrid">Pick a due Date</label>
                   </div>
                 </div>
               </div>
             </div>
             <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" class="btn btn-primary">
-                Save changes
+              <button id="btn" type="submit" class="btn btn-primary">
+                Add task
               </button>
             </div>
+          </form>
           </div>
         </div>
       </div>
