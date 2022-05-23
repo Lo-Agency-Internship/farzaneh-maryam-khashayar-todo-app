@@ -123,3 +123,88 @@ radioButtons.forEach((btn) => {
 });
 
 /*----------------------------------------------------------------filter end-------------------------------------------------*/
+/*----------------------------------------------------------------login starts-------------------------------------------------*/
+
+function validate() {
+  const username= document.getElementById("loginInputEmail").value
+  const password= document.getElementById("loginInputPassword").value
+  
+db.forEach(function(email,password){
+  if (username==="loginInputEmail" && password==="loginInputPassword ")
+  {
+    window.location.href = "./pages/tasks.html";
+  }
+else{
+  document.getElementById("formAlert").style.display = "block";
+  
+}
+console.log("login was successful!")
+});
+
+  db.push({
+    id: db.length + 1,
+    name: signUpName.value,
+    email: signUpEmail.value,
+    password: signUpPass.value,
+  });
+  
+  
+}
+
+function checkEmail() {
+  document.getElementById("emailAlert").style.display = "none";
+  document.getElementById("signUpBtn").disabled = false;
+  const signUpEmail = document.getElementById("signUpInputEmail").value;
+  let data = db;
+  data.forEach((obj) => {
+    if (obj.email === signUpEmail) {
+      document.getElementById("emailAlert").style.display = "block";
+      document.getElementById("signUpBtn").disabled = true;
+    }
+    return;
+  });
+}
+
+function checkInputs() {
+  const username = document.getElementById("loginInputEmail");
+  const password = document.getElementById("loginInputPassword");
+
+//  username
+if (loginInputEmail.value.trim() == '') {
+  setError(emailInput, 'Provide email address');
+} else if (isEmailValid(loginInputEmail.value)) {
+  setSuccessFor(username);
+} else {
+  setError(loginInputEmail, 'username can not be Blank!');
+}
+
+//password
+if (loginInputPassword.value.trim() == '') {
+  setError(passwordInput, 'Password can not be empty');
+} else if (loginInputPassword.value.trim().length < 6 || loginInputPassword.value.trim().length > 20) {
+  setError(passwordInput, 'Password min 6 max 20 charecters');
+} else {
+  setSuccess(password);
+}
+}
+
+function setError(element, errorMessage) {
+  const parent = element.parentElement;
+  if (parent.classList.contains('success')) {
+    parent.classList.remove('success');
+  }
+  parent.classList.add('error');
+  const paragraph = parent.querySelector('p');
+  paragraph.textContent = errorMessage;
+}
+
+function setSuccess(element) {
+  const parent = element.parentElement;
+  if (parent.classList.contains('error')) {
+    parent.classList.remove('error');
+  }
+  parent.classList.add('success');
+}
+/*----------------------------------------------------------------login end-------------------------------------------------*/
+
+
