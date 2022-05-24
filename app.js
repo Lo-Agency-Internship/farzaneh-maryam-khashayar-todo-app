@@ -23,6 +23,19 @@ app.post("/" ,(req,res)=>{
   const content = req.body;
   if(!(content.hasOwnProperty('name'))){
     //login process
+    const person =data.find(person =>person.email===content.email)
+    if (person=== undefined){
+
+
+
+    }else{
+      if (person.password===content.pass){
+        res.redirect(`./pages/tasks.html/${person.id}`)
+
+      }else{
+
+      }
+    }
     
 
     console.log("login")

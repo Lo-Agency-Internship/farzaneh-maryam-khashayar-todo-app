@@ -1,7 +1,5 @@
 /*----------------------------------------------------------------test db-------------------------------------------------*/
 
-const { all } = require("express/lib/application");
-
 const db = [
   {
     id: 1,
@@ -151,8 +149,6 @@ function validate(event) {
   event.preventDefault()
   const username= document.getElementById("loginInputEmail").value
   const password= document.getElementById("loginInputPassword").value
-  console.log(username)
-  console.log(db)
 
   const found = db.find(user => user["email"]==username)
     if(!found){
