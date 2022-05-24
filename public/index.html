@@ -68,11 +68,19 @@
             ></button>
           </div>
           <div class="modal-body">
+<<<<<<< HEAD
+            <form method="POST" action="">
+              <div class="mb-3">
+                <label for="loginInputEmail" class="form-label">Username</label>
+                <input
+                  name="email"
+=======
             <form onsubmit="validate()" action="">
               <div class="mb-3">
                 <label for="loginInputEmail" class="form-label">Username</label>
                 <input 
                   name="user"
+>>>>>>> 58c0deb3bf02c4878b69249f4fcaf5640cb3475e
                   type="email"
                   placeholder="email@example.com"
                   class="form-control"
@@ -92,6 +100,21 @@
                   id="loginInputPassword"
                 />
               </div>
+<<<<<<< HEAD
+              <div class="modal-footer">
+                <button
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="submit" class="btn btn-primary">Login</button>
+              </div>
+            </form>
+            
+          </div>
+          
+=======
           </div>
           <div class="modal-footer">
             <button
@@ -104,6 +127,7 @@
             <button type="submit" onclick="validate(event)" class="btn btn-primary"> Login </button>
           </div>
           </form>
+>>>>>>> 58c0deb3bf02c4878b69249f4fcaf5640cb3475e
         </div>
       </div>
     </div>
@@ -131,11 +155,12 @@
             <div id="formAlert" class="form-text">
               Please complete all of the sections.
             </div>
-            <form>
+            <form method="POST" action="" name="signUpForm">
               <div class="mb-3">
                 <label for="signUpInputName" class="form-label">Name</label>
                 <span class="required">*</span>
                 <input
+                  name="name"
                   type="text"
                   required
                   placeholder="John Doe"
@@ -149,9 +174,9 @@
                 >
                 <span class="required">*</span>
                 <input
+                  name="email"
                   type="email"
                   required
-                  onblur="checkEmail()"
                   placeholder="email@example.com"
                   class="form-control"
                   id="signUpInputEmail"
@@ -160,9 +185,7 @@
                 <div id="emailHelp" class="form-text">
                   We'll never share your email with anyone else.
                 </div>
-                <div id="emailAlert" class="form-text">
-                  This email is already signed up.
-                </div>
+
               </div>
               <div class="mb-3">
                 <label for="signUpInputPassword" class="form-label"
@@ -170,6 +193,7 @@
                 >
                 <span class="required">*</span>
                 <input
+                  name="pass"
                   type="password"
                   onblur="checkPassword()"
                   required
@@ -184,6 +208,7 @@
                 >
                 <span class="required">*</span>
                 <input
+                  
                   type="password"
                   required
                   onblur="checkPassword()"
@@ -195,24 +220,23 @@
                   The passwords do not match.
                 </div>
               </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  type="submit"
+                  id="signUpBtn"
+                  type="button"
+                  class="btn btn-success">
+                  Sign Up
+                </button>
+              </div>
             </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button
-              id="signUpBtn"
-              type="button"
-              class="btn btn-success"
-              onclick="signUp()"
-            >
-              Sign Up
-            </button>
           </div>
         </div>
       </div>
