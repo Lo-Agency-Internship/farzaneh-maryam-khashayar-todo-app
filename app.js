@@ -50,13 +50,6 @@ app.post("/" ,(req,res)=>{
 
 app.post("/pages/tasks.html",function(req,res){
 const userTask= req.body;
-<<<<<<< HEAD
-=======
-})
-
-app.post("/",function(req,res){
-console.log(req.body);
->>>>>>> 58c0deb3bf02c4878b69249f4fcaf5640cb3475e
 })
 
 
