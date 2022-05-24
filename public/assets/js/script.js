@@ -1,5 +1,7 @@
 /*----------------------------------------------------------------test db-------------------------------------------------*/
 
+const { all } = require("express/lib/application");
+
 const db = [
   {
     id: 1,
@@ -123,6 +125,27 @@ radioButtons.forEach((btn) => {
 });
 
 /*----------------------------------------------------------------filter end-------------------------------------------------*/
+// --------------------------------DONE--------------------------------------------------------------------------------------*
+//
+
+
+function one(){
+  const details= document.querySelectorAll(".explain")
+  const checked= document.getElementById("defaultCheck1").checked
+  console.log(details);
+if (checked){
+ details.forEach(item =>{
+   item.classList.add("lowopacity")
+ } )
+
+} 
+else{
+  details.forEach(item =>{
+    item.classList.remove("lowopacity")
+  } )
+
+}
+}
 /*----------------------------------------------------------------login starts-------------------------------------------------*/
 function validate(event) {
   event.preventDefault()
@@ -157,4 +180,3 @@ console.log(found);
 // let presentation = db.map(element=>{
 //   return true
 // })
-
