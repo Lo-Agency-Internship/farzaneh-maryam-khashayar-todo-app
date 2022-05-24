@@ -39,11 +39,25 @@ app.post("/" ,(req,res)=>{
         tasks: []
       })
       save(data);
-      req.session.localVar = data.length+1;
-      res.redirect("./public/pages/tasks.html")
+      const personId = data.length+1;
+      res.redirect(`./pages/tasks.html/${personId}`)
     }
   }
 })
+
+app.get("/pages/tasks.html/:id", (req,res)=>{
+
+  // getting the id from url
+  const personId = req.params.id;
+  // getting persons tasks
+
+
+
+  res.sendFile("./public/pages/tasks.html", { root: __dirname })
+})
+
+
+
 
 
 
