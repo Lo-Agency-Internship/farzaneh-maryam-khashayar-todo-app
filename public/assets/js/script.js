@@ -146,3 +146,37 @@ else{
 
 }
 }
+/*----------------------------------------------------------------login starts-------------------------------------------------*/
+function validate(event) {
+  event.preventDefault()
+  const username= document.getElementById("loginInputEmail").value
+  const password= document.getElementById("loginInputPassword").value
+  console.log(username)
+  console.log(db)
+
+  const found = db.find(user => user["email"]==username)
+    if(!found){
+      alert("email does not exist!")
+    }else if(found["password"]===password){
+      alert("password is correct.")
+    }else{
+      alert("password is incorrect!")
+    }
+//   if (username==="loginInputEmail" && password==="loginInputPassword ")
+//   {
+//     window.location.href = "./pages/tasks.html";
+//   }
+// else{ alert
+// }
+  
+// console.log("login was successful!")
+
+console.log(found);
+
+}
+/*----------------------------------------------------------------login end-------------------------------------------------*/
+/*------------------------------------------------------presentation of tasks start---------------------------------------------*/
+// let data = db;
+// let presentation = db.map(element=>{
+//   return true
+// })

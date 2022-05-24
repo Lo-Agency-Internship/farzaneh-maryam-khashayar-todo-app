@@ -24,3 +24,7 @@ app.post("/pages/tasks.html",function(req,res){
 const userTask= req.body;
 })
 
+app.post("/",function(req,res){
+console.log(req.body);
+})
+
