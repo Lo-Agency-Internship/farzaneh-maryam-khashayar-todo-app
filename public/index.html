@@ -68,11 +68,11 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form onsubmit="validate()" action="">
+            <form method="POST" action="">
               <div class="mb-3">
                 <label for="loginInputEmail" class="form-label">Username</label>
                 <input 
-                  name="user"
+                  name="email"
                   type="email"
                   placeholder="email@example.com"
                   class="form-control"
@@ -101,7 +101,7 @@
             >
               Close
             </button>
-            <button type="submit" onclick="validate(event)" class="btn btn-primary"> Login </button>
+            <button type="submit"  class="btn btn-primary"> Login </button>
           </div>
           </form>
         </div>
