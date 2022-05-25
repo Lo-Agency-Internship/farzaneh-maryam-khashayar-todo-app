@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 
 app.listen(port, () => {
-  console.log(`The server is running succesfully on the port ${port}. `);
+  console.log(`The server is running succesfully on the http://localhost:${port}. `);
 });
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -26,19 +26,20 @@ app.post("/" ,(req,res)=>{
     //login process
     const person =data.find(person =>person.email===content.email)
     if (person=== undefined){
-
-
+      const err = "not-found"
+      res.redirect(`/${err}`)
 
     }else{
       if (person.password===content.pass){
         res.redirect(`./pages/tasks.html/${person.id}`)
 
       }else{
+        const err = "not-matched"
+        res.redirect(`/${err}`)
 
       }
     }
     
-
   }
   else{
     //signup process
@@ -52,8 +53,12 @@ app.post("/" ,(req,res)=>{
         tasks: []
       })
       save(data);
-      const personId = data.length+1;
+      const personId = data.length;
       res.redirect(`./pages/tasks.html/${personId}`)
+    }
+    else{
+      const err = "exists"
+      res.redirect(`/${err}`)
     }
   }
 })
@@ -67,6 +72,10 @@ app.get("/pages/tasks.html/:id", (req,res)=>{
 
 
   res.sendFile("./public/pages/tasks.html", { root: __dirname })
+})
+
+app.get("/:err", (req,res)=>{
+  res.sendFile("./public/index.html", { root: __dirname })
 })
 
 
