@@ -66,19 +66,23 @@ app.post("/" ,(req,res)=>{
 app.get("/pages/tasks.html/:id", (req,res)=>{
 
   // getting the id from url
-  const personId = req.params.id;
+  const personId = parseInt(req.params.id);
   // getting persons tasks
-
-
-
   res.sendFile("./public/pages/tasks.html", { root: __dirname })
+})
+
+
+app.get("/api/data/:id", (req,res)=>{
+  const personID = parseInt(req.params.id);
+  const data = JSON.parse(load());
+  const person = data.find(person=> person.id === personID);
+  const tasks = person.tasks;
+  res.json(tasks);
 })
 
 app.get("/:err", (req,res)=>{
   res.sendFile("./public/index.html", { root: __dirname })
 })
-
-
 
 
 
