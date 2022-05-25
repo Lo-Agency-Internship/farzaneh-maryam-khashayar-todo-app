@@ -1,65 +1,26 @@
-/*----------------------------------------------------------------test db-------------------------------------------------*/
-
-const db = [
-  {
-    id: 1,
-    name: "khash",
-    email: "khash@gmail.com",
-    password: "123456",
-    tasks: [
-      {
-        id: 1,
-        title: "reading express.js",
-        finished: false,
-        dueDate: "19-05-2022",
-      },
-      {
-        id: 2,
-        title: "writing express.js",
-        finished: false,
-        description: "lasgasdgnakjlf",
-        dueDate: "25-05-2022",
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: "helia",
-    email: "helia@gmail.com",
-    password: "123456",
-    tasks: [
-      {
-        id: 1,
-        title: "raeding express.js",
-        finished: false,
-        dueDate: "19-05-2022",
-      },
-      {
-        id: 2,
-        title: "writing express.js",
-        finished: false,
-        description: "lasgasdgnakjlf",
-        dueDate: "25-05-2022",
-      },
-    ],
-  },
-];
-
-/*----------------------------------------------------------------signup start-------------------------------------------------*/
-function checkEmail() {
-  document.getElementById("emailAlert").style.display = "none";
-  document.getElementById("signUpBtn").disabled = false;
-  const signUpEmail = document.getElementById("signUpInputEmail").value;
-  let data = db;
-  data.forEach((obj) => {
-    if (obj.email === signUpEmail) {
-      document.getElementById("emailAlert").style.display = "block";
-      document.getElementById("signUpBtn").disabled = true;
-    }
-    return;
-  });
+/*----------------------------------------------------------------Starts at the beggining-------------------------------------------------*/
+const url = window.location.href;
+const idx = url.indexOf("/",8)
+const err = url.substring(idx+1)
+switch (err) {
+  case "not-found":
+    alert("Email does not exist!")
+    window.location.href = "./";
+    break;
+  case "not-matched":
+    alert("Password is incorrect!")
+    window.location.href = "./";
+    break;
+  case "exists":
+    alert("This email already exists!")
+    window.location.href = "./";
+    break;
+  default:
+    break;
 }
 
+
+/*----------------------------------------------------------------signup start-------------------------------------------------*/
 function checkPassword() {
   document.getElementById("passAlert").style.display = "none";
   document.getElementById("signUpBtn").disabled = false;
@@ -72,27 +33,6 @@ function checkPassword() {
   }
   return;
 }
-function signUp() {
-  const signUpName = document.getElementById("signUpInputName");
-  const signUpEmail = document.getElementById("signUpInputEmail");
-  const signUpPass = document.getElementById("signUpInputPassword");
-  if (
-    signUpName.validity.valid &&
-    signUpEmail.validity.valid &&
-    signUpPass.validity.valid
-  ) {
-    db.push({
-      id: db.length + 1,
-      name: signUpName.value,
-      email: signUpEmail.value,
-      password: signUpPass.value,
-    });
-    window.location.href = "./pages/tasks.html";
-  } else {
-    document.getElementById("formAlert").style.display = "block";
-  }
-}
-
 /*----------------------------------------------------------------signup end-------------------------------------------------*/
 
 /*----------------------------------------------------------------filter start-------------------------------------------------*/
@@ -144,35 +84,3 @@ else{
 
 }
 }
-/*----------------------------------------------------------------login starts-------------------------------------------------*/
-function validate(event) {
-  event.preventDefault()
-  const username= document.getElementById("loginInputEmail").value
-  const password= document.getElementById("loginInputPassword").value
-
-  const found = db.find(user => user["email"]==username)
-    if(!found){
-      alert("email does not exist!")
-    }else if(found["password"]===password){
-      alert("password is correct.")
-    }else{
-      alert("password is incorrect!")
-    }
-//   if (username==="loginInputEmail" && password==="loginInputPassword ")
-//   {
-//     window.location.href = "./pages/tasks.html";
-//   }
-// else{ alert
-// }
-  
-// console.log("login was successful!")
-
-console.log(found);
-
-}
-/*----------------------------------------------------------------login end-------------------------------------------------*/
-/*------------------------------------------------------presentation of tasks start---------------------------------------------*/
-// let data = db;
-// let presentation = db.map(element=>{
-//   return true
-// })
