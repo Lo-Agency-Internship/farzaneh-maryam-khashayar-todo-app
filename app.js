@@ -1,4 +1,5 @@
 const express = require("express");
+const { parse } = require("path");
 const port = 3000;
 const path = require("path");
 const app = express();
@@ -38,7 +39,6 @@ app.post("/" ,(req,res)=>{
     }
     
 
-    console.log("login")
   }
   else{
     //signup process
@@ -74,9 +74,31 @@ app.get("/pages/tasks.html/:id", (req,res)=>{
 
 
 
+// Add Task
+app.post("/pages/tasks.html/:id",function(req,res){
+  const userTask= req.body;
+  const date= new Date(userTask.date);
+  let day= date.getDate()
+  let month= date.getMonth()+1
+  let year= date.getFullYear()
+  const data = JSON.parse(load());
+  const personId = parseInt(req.params.id);  
+  const person =data.find(person=>person.id===personId)
+  person.tasks.push({
+    id:person.tasks.length+1,
+    title:userTask.title,
+    due:{
+      day:day,
+      month:month,
+      year:year
+    }
+  })
+  data.splice(data.indexOf(person), 1, person);
+ 
+  save(data)
+  res.redirect(`./${personId}`)
 
-app.post("/pages/tasks.html",function(req,res){
-const userTask= req.body;
+
 })
 
 
