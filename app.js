@@ -24,7 +24,7 @@ app.post("/" ,(req,res)=>{
   const content = req.body;
   if(!(content.hasOwnProperty('name'))){
     //login process
-    const person =data.find(person =>person.email===content.email)
+    const person =data.find(person =>person.email===content.email.toLowerCase().trim())
     if (person=== undefined){
       const err = "not-found"
       res.redirect(`/${err}`)
@@ -48,7 +48,7 @@ app.post("/" ,(req,res)=>{
       data.push({
         id: data.length + 1,
         name: content.name,
-        email: content.email,
+        email: content.email.toLowerCase().trim(),
         password: content.pass,
         tasks: []
       })
@@ -73,11 +73,23 @@ app.get("/pages/tasks.html/:id", (req,res)=>{
 
 
 app.get("/api/data/:id", (req,res)=>{
-  const personID = parseInt(req.params.id);
+  const personId = parseInt(req.params.id);
   const data = JSON.parse(load());
-  const person = data.find(person=> person.id === personID);
+  const person = data.find(person=> person.id === personId);
   const tasks = person.tasks;
   res.json(tasks);
+})
+ app.post("/api/data/:id/:task", (req,res)=>{
+  const personId = parseInt(req.params.id);
+  const taskId = parseInt(req.params.task);
+  const data = JSON.parse(load());
+  const content = req.body;
+  const person =data.find(person=>person.id===personId)
+  person.tasks[taskId-1].finished = content.finished;
+
+  data.splice(data.indexOf(person), 1, person);
+  save(data);
+  res.send();
 })
 
 app.get("/:err", (req,res)=>{
@@ -100,11 +112,13 @@ app.post("/pages/tasks.html/:id",function(req,res){
   person.tasks.push({
     id:person.tasks.length+1,
     title:userTask.title,
+    finished: false,
     due:{
       day:day,
       month:month,
       year:year
     }
+    
   })
   data.splice(data.indexOf(person), 1, person);
  
