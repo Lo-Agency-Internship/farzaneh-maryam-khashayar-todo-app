@@ -9,7 +9,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="../assets/css/tasks.css" />
+    <link rel="stylesheet" href="../../assets/css/tasks.css" />
     <link rel="icon" type="image/x-icon" href="../../assets/images/logo.ico" />
   </head>
 
@@ -17,7 +17,7 @@
     <header>
       <!-- Navbar starts here -->
       <div class="nav1">
-        <nav class="navbar" style="background-color: #e3f2fd">
+        <nav class="navbar" style="background-color: rgba(255,255,255,0.4)">
           <div class="container-xxl">
             <a href="#" class="navbar-brand d-flex align-items-center">
               <img
@@ -26,7 +26,7 @@
                 width="45"
                 height="45"
               />
-              <span class="fw-bold text-secondary"> AnyTask </span>
+              <span class="fw-bold text-light"> AnyTask </span>
             </a>
             <div class="d-flex flex-row-reverse">
               <button class="btn btn-danger d-flex">
@@ -56,120 +56,111 @@
       <!-- Navbar ends here -->
     </header>
     <main
-      class="d-flex flex-column justify-content-center align-content-center"
-    >
+      class="d-flex flex-column justify-content-center align-content-center">
       <!-- main page -->
-      <div
-        class="d-flex justify-content-around mt-5 ms-5 me-5 mb-1 col-6 justify-content-center align-content-center align-self-center"
-      >
-        <h2>TaskList</h2>
-        <!-- <button type="button" class="btn btn-outline-danger opacity-50">Add Task</button> -->
-        <!-- Button trigger modal -->
-        <!-- filter button groups -->
+      <div id="wrapper" class="d-flex flex-column mt-5 ms-5 me-5 mb-5 col-6 justify-content-around justify-content-center align-content-center align-self-center">
+          <div class="d-flex justify-content-between mt-5 mb-1 col-8 gap-3  align-content-center align-self-center">
+          <h2 class="m-0 p-0 align-self-center mr-3 text-light">TaskList</h2>
+          <!-- <button type="button" class="btn btn-outline-danger opacity-50">Add Task</button> -->
+          <!-- Button trigger modal -->
+          <!-- filter button groups -->
 
-        <div
-          class="btn-group d-flex align-items-center"
-          role="group"
-          aria-label="Basic radio toggle button group"
-        >
-          <input
-            type="radio"
-            value="all"
-            class="btn-check"
-            name="btnradio"
-            id="btnradio1"
-            autocomplete="off"
-            checked
-          />
-          <label class="btn btn-outline-primary" for="btnradio1">All</label>
+          <div
+            class="btn-group d-flex align-items-center"
+            role="group"
+            aria-label="Basic radio toggle button group">
+            <input
+              type="radio"
+              value="all"
+              class="btn-check"
+              name="btnradio"
+              id="btnradio1"
+              autocomplete="off"
+              checked/>
+            <label class="btn btn-outline-success" for="btnradio1">All</label>
 
-          <input
-            type="radio"
-            value="weekly"
-            class="btn-check"
-            name="btnradio"
-            id="btnradio2"
-            autocomplete="off"
-          />
-          <label class="btn btn-outline-primary" for="btnradio2">Weekly</label>
+            <input
+              type="radio"
+              value="weekly"
+              class="btn-check"
+              name="btnradio"
+              id="btnradio2"
+              autocomplete="off"/>
+            <label class="btn btn-outline-success" for="btnradio2">Weekly</label>
 
-          <input
-            type="radio"
-            value="monthly"
-            class="btn-check"
-            name="btnradio"
-            id="btnradio3"
-            autocomplete="off"
-          />
-          <label class="btn btn-outline-primary" for="btnradio3">Monthly</label>
+            <input
+              type="radio"
+              value="monthly"
+              class="btn-check"
+              name="btnradio"
+              id="btnradio3"
+              autocomplete="off"/>
+            <label class="btn btn-outline-success" for="btnradio3">Monthly</label>
+          </div>
+
+          <button
+            class="btn btn-warning"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal">
+            Add Task
+          </button>
         </div>
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add task</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <form method="POST" action="" class="form-floating" name="taskform">
+                  <input
+                   name="title"
+                    type="text"
+                    class="form-control"
+                    id="floatingInputValue"
+                    required/>
+                  <label for="floatingInputValue">Add your Task Title</label>
+                <div class="row g-2">
+                  <div class="col-md">
+                    <div class="form-floating">
 
-        <button
-          class="btn btn-info"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          Add Task
-        </button>
-      </div>
-      <!-- Modal -->
-      <div
-        class="modal fade"
-        id="exampleModal"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Add task</h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <form method="POST" action="" class="form-floating" name="taskform">
-                <input
-                 name="title"
-                  type="text"
-                  class="form-control"
-                  id="floatingInputValue"
-                  required
-                />
-                <label for="floatingInputValue">Add your Task Title</label>
-              <div class="row g-2">
-                <div class="col-md">
-                  <div class="form-floating">
-                    
-                        <input
-                  name="date"
-                  type="date"
-                  class="form-control"
-                  id="floatingInputValue"
-                  required
-                />
-                <label for="floatingSelectGrid">Pick a due Date</label>
+                  <input
+                    name="date"
+                    type="date"
+                    class="form-control"
+                    id="floatingInputValue"
+                    required/>
+                  <label for="floatingSelectGrid">Pick a due Date</label>
+                    </div>
                   </div>
                 </div>
               </div>
+              <div class="modal-footer">
+                <button id="btn" type="submit" class="btn btn-primary">
+                  Add task
+                </button>
+              </div>
+            </form>
             </div>
-            <div class="modal-footer">
-              <button id="btn" type="submit" class="btn btn-primary">
-                Add task
-              </button>
-            </div>
-          </form>
           </div>
         </div>
-      </div>
 
-      <ul id="tasks-section">
+        <ul id="tasks-section" class="list-group border rounded border-primary list-group-flush align-self-center col-6 mt-5 ms-5 me-5 mb-5">
         
-      </ul>
+        </ul>
+      </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
