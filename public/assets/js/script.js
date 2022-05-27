@@ -38,30 +38,9 @@ function checkPassword() {
 }
 /*----------------------------------------------------------------signup end-------------------------------------------------*/
 
-/*----------------------------------------------------------------filter start-------------------------------------------------*/
-const radioButtons = document.querySelectorAll('input[name="btnradio"]');
 
-radioButtons.forEach((btn) => {
-  if (btn.checked.value === "all") {
-    selectedTasks = [...allTasks];
-  }
-  if (btn.checked.value === "weekly") {
-    const day = new Date().getDate();
-    selectedTasks = allTasks.filter((task) => {
-      return task.finished === false && task.due.day - day <= 7;
-    });
-  }
-  if (btn.checked.value === "monthly") {
-    const month = new Date().getMonth() + 1;
-    selectedTasks = allTasks.filter((task) => {
-      return task.finished === false && task.due.month === month;
-    });
-  }
-});
+// ----------------------------------------------------------------DONE------------------------------------------------------*
 
-/*----------------------------------------------------------------filter end-------------------------------------------------*/
-// --------------------------------DONE--------------------------------------------------------------------------------------*
-//
 
 
 function taskState(taskId){
@@ -78,7 +57,6 @@ function taskState(taskId){
         task.classList.add("done");
       } 
       else{
-        console.log(checkbox.checked)
         task.classList.remove("done")
       }
     }
@@ -89,7 +67,7 @@ function taskState(taskId){
   xhttp.setRequestHeader("content-type", "application/json")
   xhttp.send(JSON.stringify({finished:checkbox.checked}));
 }
-/*--------------------------------------------------------------render tasks starts-------------------------------------------------*/
+/*--------------------------------------------------------------get tasks starts-------------------------------------------------*/
 function getTasks(){
   const xhttp= new XMLHttpRequest()
   const url = window.location.pathname
@@ -98,37 +76,102 @@ function getTasks(){
   xhttp.onload=()=>{
     if (xhttp.status >= 200 && xhttp.status < 300){
       const response = JSON.parse(xhttp.response) 
-      selectedTasks=[...response]
-      const ul=document.getElementById("tasks-section")
-      selectedTasks.forEach(task=>{
-      const li=document.createElement("li");
-      li.classList.add("list-group-item");
-      li.classList.add("d-flex");
-      li.innerHTML=`<div class="task d-flex align-content-center align-self-center ">
-                      <input id="task${task.id}" class="form-check-input me-1" type="checkbox" value="true" onclick="taskState(${task.id})" aria-label="...">
-                      <div for="${task.id}" class="d-flex">
-                        <span><strong>Title:</strong></span>
-                        <div class="task-title mx-1">
-                          ${task.title}
-                        </div>
-                        <span><strong>Due Date:</strong></span>
-                        <div class="task-due mx-1" >
-                          <span>${task.due.day} -</span>
-                          <span>${task.due.month} -</span>
-                          <span>${task.due.year}</span>
-                        </div>
-                      </div>
-                    </div>`
-      li.setAttribute("id",task.id)
-      ul.appendChild(li)
-  
-                           
+      allTasks=[...response];
+      const view = localStorage.getItem("view");
+      renderTasks(allTasks,view);
 
-      })
     }
   }
   xhttp.open("GET", `/api/data/${userId}`,true)
   xhttp.send();
 }
 
-/*--------------------------------------------------------------render tasks ends-------------------------------------------------*/
+/*--------------------------------------------------------------get tasks ends-------------------------------------------------*/
+
+/*--------------------------------------------------------------logout start-------------------------------------------------*/
+const logout = ()=>{
+  window.location.href = "../../";
+}
+/*--------------------------------------------------------------logout ends-------------------------------------------------*/
+
+
+/*--------------------------------------------------------------render task & filter start-------------------------------------------------*/
+
+
+
+const renderTasks = (arr,id) =>{
+  if(!arr){
+    arr = [...allTasks]
+  }
+  /*--------------------------------------------------------------filter -------------------------------------------------*/
+
+  switch (id) {
+    case "all":
+      selectedTasks = [...arr];
+      console.log(selectedTasks);
+      localStorage.setItem("view", id)
+      break;
+
+    case "weekly":
+      const day = new Date().getDate();
+      selectedTasks = arr.filter((task) => Math.abs(task.due.day - day) <= 7 && task.finished === false);
+      console.log(selectedTasks);
+      localStorage.setItem("view", id)
+      break;
+
+    case "monthly":
+      const month = new Date().getMonth() + 1;
+      selectedTasks = arr.filter((task) => task.due.month === month && task.finished === false);
+      console.log(selectedTasks);
+      localStorage.setItem("view", id)
+      break;
+    
+    default:
+      selectedTasks = [...arr];
+
+      break;
+  }
+
+/*--------------------------------------------------------------render task -------------------------------------------------*/
+
+
+  const ul=document.getElementById("tasks-section")
+  ul.innerText=""
+  selectedTasks.forEach(task=>{
+    const li=document.createElement("li");
+    li.classList.add("list-group-item");
+    li.classList.add("d-flex");
+    li.innerHTML=`<div class="task d-flex align-content-center align-self-center ">
+                    <input id="task${task.id}" class="form-check-input me-1 align-self-center ${task.finished===true && "done"}" type="checkbox" value="true" onclick="taskState(${task.id})" aria-label="..." ${task.finished===true && "checked"}>
+                    <div for="${task.id}" class="ms-2">
+                      <div class="task-title d-flex">
+                        <span><strong>Title:</strong></span>
+                        <div class="mx-1">
+                          ${task.title}
+                        </div>
+                      </div>
+
+                      <div class="task-due d-flex">
+                        <span><strong>Due Date:</strong></span>
+                        <div class="mx-1" >
+                          <span>${task.due.day} -</span>
+                          <span>${task.due.month} -</span>
+                          <span>${task.due.year}</span>
+                        </div>
+                      </div>
+
+                      <div class="task-des d-flex">
+                        <span><strong>Description:</strong></span>
+                        <div class="mx-1" >
+                          ${task.description}
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>`
+    li.setAttribute("id",task.id);
+    ul.appendChild(li);
+    })
+}
+
+/*--------------------------------------------------------------render task & filter end-------------------------------------------------*/

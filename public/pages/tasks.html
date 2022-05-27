@@ -17,7 +17,7 @@
     <header>
       <!-- Navbar starts here -->
       <div class="nav1">
-        <nav class="navbar" style="background-color: rgba(255,255,255,0.4)">
+        <nav class="navbar" style="background-color:  #e3f2fd">
           <div class="container-xxl">
             <a href="#" class="navbar-brand d-flex align-items-center">
               <img
@@ -26,10 +26,10 @@
                 width="45"
                 height="45"
               />
-              <span class="fw-bold text-light"> AnyTask </span>
+              <span class="fw-bold text-secondary"> AnyTask </span>
             </a>
             <div class="d-flex flex-row-reverse">
-              <button class="btn btn-danger d-flex">
+              <button class="btn btn-danger d-flex" onclick="logout()">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="32"
@@ -60,46 +60,19 @@
       <!-- main page -->
       <div id="wrapper" class="d-flex flex-column mt-5 ms-5 me-5 mb-5 col-6 justify-content-around justify-content-center align-content-center align-self-center">
           <div class="d-flex justify-content-between mt-5 mb-1 col-8 gap-3  align-content-center align-self-center">
-          <h2 class="m-0 p-0 align-self-center mr-3 text-light">TaskList</h2>
+          <h2 class="m-0 p-0 align-self-center mr-3 text-secondary">TaskList</h2>
           <!-- <button type="button" class="btn btn-outline-danger opacity-50">Add Task</button> -->
           <!-- Button trigger modal -->
           <!-- filter button groups -->
 
-          <div
-            class="btn-group d-flex align-items-center"
-            role="group"
-            aria-label="Basic radio toggle button group">
-            <input
-              type="radio"
-              value="all"
-              class="btn-check"
-              name="btnradio"
-              id="btnradio1"
-              autocomplete="off"
-              checked/>
-            <label class="btn btn-outline-success" for="btnradio1">All</label>
-
-            <input
-              type="radio"
-              value="weekly"
-              class="btn-check"
-              name="btnradio"
-              id="btnradio2"
-              autocomplete="off"/>
-            <label class="btn btn-outline-success" for="btnradio2">Weekly</label>
-
-            <input
-              type="radio"
-              value="monthly"
-              class="btn-check"
-              name="btnradio"
-              id="btnradio3"
-              autocomplete="off"/>
-            <label class="btn btn-outline-success" for="btnradio3">Monthly</label>
-          </div>
+          <div class="btn-group">
+            <button type="button" id="all" class="btn btn-outline-primary" onclick="renderTasks(undefined,this.id)">All</button>
+            <button type="button" id="weekly" class="btn btn-outline-primary" onclick="renderTasks(undefined,this.id)">Weekly</button>
+            <button type="button" id="monthly" class="btn btn-outline-primary" onclick="renderTasks(undefined,this.id)">Monthly</button>
+        </div>
 
           <button
-            class="btn btn-warning"
+            class="btn btn-success"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal">
             Add Task
@@ -125,14 +98,21 @@
               </div>
               <div class="modal-body">
                 <form method="POST" action="" class="form-floating" name="taskform">
-                  <input
-                   name="title"
-                    type="text"
-                    class="form-control"
-                    id="floatingInputValue"
-                    required/>
-                  <label for="floatingInputValue">Add your Task Title</label>
-                <div class="row g-2">
+                  <div class="row g-2 my-2">
+                    <div class="col-md">
+                      <div class="form-floating">
+    
+                        <input
+                         name="title"
+                         type="text"
+                         class="form-control"
+                         id="floatingInputValue"
+                         required/>
+                       <label for="floatingInputValue">Add your Task Title</label>
+                      </div>
+                    </div>
+                  </div>  
+                <div class="row g-2 my-2">
                   <div class="col-md">
                     <div class="form-floating">
 
@@ -146,7 +126,22 @@
                     </div>
                   </div>
                 </div>
+                <div class="row g-2 my-2">
+                  <div class="col-md">
+                    <div class="form-floating">
+  
+                  <input
+                    name="des"
+                    type="text"
+                    class="form-control"
+                    id="floatingInputValue"
+                    required/>
+                  <label for="floatingSelectGrid">Add your description</label>
+                    </div>
+                  </div>
+                </div>
               </div>
+              
               <div class="modal-footer">
                 <button id="btn" type="submit" class="btn btn-primary">
                   Add task
@@ -157,8 +152,8 @@
           </div>
         </div>
 
-        <ul id="tasks-section" class="list-group border rounded border-primary list-group-flush align-self-center col-6 mt-5 ms-5 me-5 mb-5">
-        
+        <ul id="tasks-section" class="list-group list-group-flush align-self-center col-6 mt-5 ms-5 me-5 mb-5">
+            No tasks to preview!
         </ul>
       </div>
     </main>
